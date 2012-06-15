@@ -271,7 +271,11 @@ bool SDeclarativeScreenPrivate::landscapeAllowed() const
 
 bool SDeclarativeScreenPrivate::portraitDisplay() const
 {
+#if defined(Q_OS_SYMBIAN) || defined(Q_WS_SIMULATOR)
     return m_displaySize.height() > m_displaySize.width();
+#else
+    return false;
+#endif
 }
 
 #ifdef Q_OS_SYMBIAN
