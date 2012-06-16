@@ -94,6 +94,8 @@ protected:
     bool deviceSupportsOnlyLandscape();
 #elif defined(Q_WS_SIMULATOR)
     void initDisplaySize();
+#elif defined(Q_OS_BLACKBERRY)
+    void initDisplaySize();
 #endif
 
     //Data

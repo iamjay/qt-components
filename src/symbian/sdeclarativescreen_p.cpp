@@ -102,6 +102,8 @@ SDeclarativeScreenPrivate::SDeclarativeScreenPrivate( SDeclarativeScreen *qq, QD
     if (m_view)
         m_view->setWindowState(view->windowState() | Qt::WindowFullScreen);
     connect(QApplication::desktop(), SIGNAL(resized(int)), SLOT(desktopResized(int)));
+#elif defined(Q_OS_BLACKBERRY)
+    initDisplaySize();
 #endif
 
     initScreenSize();
@@ -355,4 +357,15 @@ void SDeclarativeScreenPrivate::initDisplaySize()
 
     setDisplay(width, height, dpi);
 }
+
+#elif defined(Q_OS_BLACKBERRY)
+
+void SDeclarativeScreenPrivate::initDisplaySize()
+{
+    int width = QApplication::desktop()->screenGeometry().size().width();
+    int height = QApplication::desktop()->screenGeometry().size().height();
+
+    setDisplay(width, height, DEFAULT_DPI);
+}
+
 #endif
